@@ -5,6 +5,7 @@ import Navbar from "./pages/Navbar";
 import Signup from "./pages/Signup";
 import AuthProvider from "./Context/AuthContext";
 import Login from "./pages/Login";
+import Test from "./Test";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <AuthProvider>
         <Router>
           <Navbar />
+          <Test />
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/signup" element={<Signup />} />
