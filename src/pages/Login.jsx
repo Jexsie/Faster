@@ -10,7 +10,7 @@ const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, googleLogin } = useAuth();
 
   function handleInput(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,6 +27,11 @@ const Login = () => {
       setError("Failed! Please check your email or password and try again.");
     }
     setLoading(false);
+    setLoggedIn(true);
+  }
+
+  function signInWithGoogle() {
+    googleLogin();
     setLoggedIn(true);
   }
 
@@ -48,6 +53,9 @@ const Login = () => {
       />
       <button onClick={handleSubmit} disabled={loading}>
         Login
+      </button>
+      <button onClick={signInWithGoogle} disabled={loading}>
+        Sign in with Google
       </button>
       <div>
         <p>

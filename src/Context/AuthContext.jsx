@@ -3,6 +3,8 @@ import { auth } from "../FirebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 
 const AuthContext = React.createContext();
@@ -22,6 +24,11 @@ export default function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
+  function googleLogin(email) {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -34,6 +41,7 @@ export default function AuthProvider({ children }) {
     currentUser,
     signup,
     login,
+    googleLogin,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
