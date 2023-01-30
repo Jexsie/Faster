@@ -7,8 +7,8 @@ import Signup from "./pages/Signup";
 import AuthProvider from "./Context/AuthContext";
 import ModalContextProvider from "./Context/ModalContextProvider";
 import Login from "./pages/Login";
-import Card from "./Card/Card";
 import LoadingApp from "./LoadingApp/LoadingApp";
+import PrivateRoutes from "./PrivateRoutes";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000);
   }, []);
 
   return (
@@ -28,9 +28,10 @@ function App() {
             <ModalContextProvider>
               <Router>
                 <Navbar />
-                <Card />
                 <Routes>
-                  <Route path="/" element={<Homepage />} />
+                  <Route element={<PrivateRoutes />}>
+                    <Route exact path="/" element={<Homepage />} />
+                  </Route>
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/login" element={<Login />} />
                 </Routes>

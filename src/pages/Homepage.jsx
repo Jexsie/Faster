@@ -1,3 +1,4 @@
+import Card from "../Card/Card";
 import "./Homepage.scss";
 
 const Homepage = () => {
@@ -9,6 +10,8 @@ const Homepage = () => {
   ];
   return (
     <>
+      <Card />
+
       <div className="container">
         <div>
           <h1>Connect to all your socials fast and easy with FASTER</h1>
