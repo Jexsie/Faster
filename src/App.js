@@ -4,22 +4,25 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./pages/Navbar";
 import Signup from "./pages/Signup";
 import AuthProvider from "./Context/AuthContext";
+import ModalContextProvider from "./Context/ModalContextProvider";
 import Login from "./pages/Login";
-import Test from "./Test";
+import Card from "./Context/Card/Card";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <Router>
-          <Navbar />
-          <Test />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </Router>
+        <ModalContextProvider>
+          <Router>
+            <Navbar />
+            <Card />
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </Router>
+        </ModalContextProvider>
       </AuthProvider>
     </div>
   );
