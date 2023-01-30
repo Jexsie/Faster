@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  GithubAuthProvider,
 } from "firebase/auth";
 
 const AuthContext = React.createContext();
@@ -24,8 +25,13 @@ export default function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  function googleLogin(email) {
+  function googleLogin() {
     const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+  }
+
+  function githubLogin() {
+    const provider = new GithubAuthProvider();
     return signInWithPopup(auth, provider);
   }
 
@@ -42,6 +48,7 @@ export default function AuthProvider({ children }) {
     signup,
     login,
     googleLogin,
+    githubLogin,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

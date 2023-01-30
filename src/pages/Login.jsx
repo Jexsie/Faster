@@ -10,7 +10,7 @@ const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login, googleLogin } = useAuth();
+  const { login, googleLogin, githubLogin } = useAuth();
 
   function handleInput(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -35,6 +35,11 @@ const Login = () => {
     setLoggedIn(true);
   }
 
+  function signInWithGithub() {
+    githubLogin();
+    setLoggedIn(true);
+  }
+
   return (
     <div className="login-form">
       {error && <div className="alert">{error}</div>}
@@ -56,6 +61,9 @@ const Login = () => {
       </button>
       <button onClick={signInWithGoogle} disabled={loading}>
         Sign in with Google
+      </button>
+      <button onClick={signInWithGithub} disabled={loading}>
+        Sign in with Github
       </button>
       <div>
         <p>
