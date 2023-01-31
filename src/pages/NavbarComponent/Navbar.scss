@@ -11,8 +11,15 @@ a {
   gap: 50%;
   align-items: center;
   justify-content: center;
+  // border-bottom: 1px solid black;
+  // background-color: rgba(245, 245, 245, 0.8);
+  // background-color: rgba(184, 219, 217, 0.8);
+  // background: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 
   h1 {
+    font-family: "Gilroy-bold";
     color: indigo;
   }
 
@@ -22,7 +29,12 @@ a {
 
     a {
       margin-inline: 1.5rem;
-      color: blue;
+      color: #0d21a1;
+      font-family: "Gilroy-light";
     }
   }
 }
+
+// background: rgba(0,0,0,0.8);
+// -webkit-backdrop-filter: saturate(180%) blur(20px);
+// backdrop-filter: saturate(180%) blur(20px);

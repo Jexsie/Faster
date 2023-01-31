@@ -10,7 +10,7 @@ const Navbar = () => {
   const headers = [
     {
       name: "Home",
-      link: "/",
+      link: currentUser ? "/dashboard" : "/",
       func: () => {},
     },
     {

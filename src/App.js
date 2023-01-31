@@ -32,10 +32,10 @@ function App() {
                 <Navbar />
                 <Routes>
                   <Route element={<PrivateRoutes />}>
-                    <Route exact path="/" element={<Homepage />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                   </Route>
+                  <Route exact path="/" element={<Homepage />} />
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/login" element={<Login />} />
                 </Routes>

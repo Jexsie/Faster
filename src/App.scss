@@ -1,8 +1,14 @@
+@font-face {
+  font-family: "Gilroy-bold";
+  src: url(./Fonts/GilroyExtraBold.otf);
+}
+
+@font-face {
+  font-family: "Gilroy-light";
+  src: url(./Fonts/GilroyLight.otf);
+}
+
 .App {
   margin: 0;
   padding: 0;
-
-  .App::-webkit-scrollbar {
-    display: none;
-  }
 }

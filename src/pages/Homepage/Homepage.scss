@@ -1,3 +1,20 @@
+// .sss::-webkit-scrollbar {
+//   display: none;
+// }
+
+// .sss {
+//   scrollbar-width: none;
+// }
+
+.sss {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.sss::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 .container {
   padding-top: 5rem;
   box-sizing: border-box;

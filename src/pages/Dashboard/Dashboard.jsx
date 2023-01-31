@@ -1,8 +1,13 @@
-import React from "react";
+import Card from "../../Card/Card";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <>
+      <Card />
+      <div className="dashboard-container"></div>
+    </>
+  );
 };
 
 export default Dashboard;
