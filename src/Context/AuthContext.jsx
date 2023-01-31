@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  signOut,
   GithubAuthProvider,
 } from "firebase/auth";
 
@@ -35,6 +36,10 @@ export default function AuthProvider({ children }) {
     return signInWithPopup(auth, provider);
   }
 
+  function logOut() {
+    return signOut(auth);
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -49,6 +54,7 @@ export default function AuthProvider({ children }) {
     login,
     googleLogin,
     githubLogin,
+    logOut,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

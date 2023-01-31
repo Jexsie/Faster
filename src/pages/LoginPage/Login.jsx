@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../Context/AuthContext";
+import { useAuth } from "../../Context/AuthContext";
 import "./Login.scss";
 
 const Login = () => {
@@ -11,6 +11,7 @@ const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login, googleLogin, githubLogin } = useAuth();
+  // const navigate = useNavigate();
 
   function handleInput(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,16 +29,19 @@ const Login = () => {
     }
     setLoading(false);
     setLoggedIn(true);
+    // navigate("/dashboard");
   }
 
   function signInWithGoogle() {
     googleLogin();
     setLoggedIn(true);
+    // navigate("/dashboard");
   }
 
   function signInWithGithub() {
     githubLogin();
     setLoggedIn(true);
+    // navigate("/dashboard");
   }
 
   return (
