@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import logo from "../../images/logo.jpg";
 import "./Login.scss";
@@ -10,10 +10,9 @@ const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login, googleLogin, githubLogin } = useAuth();
+  const { login, currentUser, googleLogin, githubLogin } = useAuth();
   // const navigate = useNavigate();
 
   function handleInput(e) {
@@ -23,6 +22,10 @@ const Login = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (currentUser.email === emailRef.current.value) {
+      setError("User already exists!");
+    }
+
     try {
       setError("");
       setLoading(true);
@@ -31,19 +34,16 @@ const Login = () => {
       setError("Failed! Please check your email or password and try again.");
     }
     setLoading(false);
-    setLoggedIn(true);
     // navigate("/dashboard");
   }
 
   function signInWithGoogle() {
     googleLogin();
-    setLoggedIn(true);
     // navigate("/dashboard");
   }
 
   function signInWithGithub() {
     githubLogin();
-    setLoggedIn(true);
     // navigate("/dashboard");
   }
 
@@ -55,7 +55,6 @@ const Login = () => {
         </div>
         <form className="login-form">
           {error && <div className="alert">{error}</div>}
-          {/* {loggedIn && <h1>LOGGED IN</h1>} */}
           <div className="inputs">
             <div className="inputs-controll">
               <FontAwesomeIcon icon={solid("envelope")} className="icon" />
@@ -83,7 +82,6 @@ const Login = () => {
           </div>
 
           <button
-            type="submit"
             className="login-button"
             onClick={handleSubmit}
             disabled={loading}

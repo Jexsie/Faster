@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
 const firebaseApp = initializeApp({
@@ -12,3 +13,7 @@ const firebaseApp = initializeApp({
 });
 
 export const auth = getAuth(firebaseApp);
+// export const database = getDatabase(
+//   firebaseApp,
+//   "https://faster-256-default-rtdb.firebaseio.com/users/"
+// );
