@@ -1,3 +1,26 @@
-.login-form {
-  padding-top: 8rem;
+.login-form-controll {
+  width: 100%;
+  height: 100vh;
+
+  .login-form {
+    height: 100vh;
+    // padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 100vh;
+    margin: 0 auto;
+    font-family: "Gilroy-light";
+    gap: 1rem;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: blur(20px);
+
+    h1 {
+      color: #004e98;
+    }
+  }
 }

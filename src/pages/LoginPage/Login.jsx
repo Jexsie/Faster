@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import "./Login.scss";
@@ -45,34 +47,48 @@ const Login = () => {
   }
 
   return (
-    <div className="login-form">
-      {error && <div className="alert">{error}</div>}
-      {loggedIn && <h1>LOGGED IN</h1>}
-      <input
-        type="text"
-        placeholder="type your email address"
-        ref={emailRef}
-        onChange={handleInput}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        ref={passwordRef}
-        onChange={handleInput}
-      />
-      <button onClick={handleSubmit} disabled={loading}>
-        Login
-      </button>
-      <button onClick={signInWithGoogle} disabled={loading}>
-        Sign in with Google
-      </button>
-      <button onClick={signInWithGithub} disabled={loading}>
-        Sign in with Github
-      </button>
-      <div>
-        <p>
-          New to FASTER? <Link to="/signup">Sign up</Link>
-        </p>
+    <div className="login-form-controll">
+      <div className="login-form">
+        {error && <div className="alert">{error}</div>}
+        {loggedIn && <h1>LOGGED IN</h1>}
+        <FontAwesomeIcon icon={solid("user")} />
+        <div className="inputs">
+          <div>
+            <input
+              type="text"
+              placeholder="Email address"
+              ref={emailRef}
+              onChange={handleInput}
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              ref={passwordRef}
+              onChange={handleInput}
+            />
+          </div>
+        </div>
+        <div className="forgot-password">
+          <p>Forgot password?</p>
+        </div>
+        <div className="buttons">
+          <button onClick={handleSubmit} disabled={loading}>
+            Login
+          </button>
+          <button onClick={signInWithGoogle} disabled={loading}>
+            Sign in with Google
+          </button>
+          <button onClick={signInWithGithub} disabled={loading}>
+            Sign in with Github
+          </button>
+        </div>
+        <div>
+          <p>
+            New to FASTER? <Link to="/signup">Sign up</Link>
+          </p>
+        </div>
       </div>
     </div>
   );
