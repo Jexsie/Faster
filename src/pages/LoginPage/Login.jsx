@@ -55,7 +55,7 @@ const Login = () => {
         </div>
         <form className="login-form">
           {error && <div className="alert">{error}</div>}
-          {loggedIn && <h1>LOGGED IN</h1>}
+          {/* {loggedIn && <h1>LOGGED IN</h1>} */}
           <div className="inputs">
             <div className="inputs-controll">
               <FontAwesomeIcon icon={solid("envelope")} className="icon" />
@@ -82,7 +82,12 @@ const Login = () => {
             </div>
           </div>
 
-          <button type="submit" className="login-button">
+          <button
+            type="submit"
+            className="login-button"
+            onClick={handleSubmit}
+            disabled={loading}
+          >
             Login
           </button>
         </form>

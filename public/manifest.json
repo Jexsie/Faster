@@ -1,0 +1,13 @@
+{
+  "name": "Faster",
+  "version": "1.0.0",
+  "description": "Manage your brand and profile with Faster",
+  "aurthor": "Jessie Ssebuliba",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16 32x32 24x24 36x36",
+      "type": "image/x-icon"
+    }
+  ]
+}
