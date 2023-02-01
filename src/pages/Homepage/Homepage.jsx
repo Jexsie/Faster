@@ -1,7 +1,7 @@
 import { ClickAwayListener } from "@mui/base";
 import { useState } from "react";
 import Modal from "../../Card/Modal";
-import Login from "../LoginPage/Login";
+import Signup from "../SignupPage/Signup";
 import "./Homepage.scss";
 
 const Homepage = () => {
@@ -30,7 +30,7 @@ const Homepage = () => {
       {modalOpen && (
         <Modal>
           <ClickAwayListener onClickAway={() => setModalOpen(false)}>
-            <Login />
+            <Signup />
           </ClickAwayListener>
         </Modal>
       )}

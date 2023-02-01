@@ -1,8 +1,107 @@
-.form-controll {
-  padding-top: 8rem;
-}
-
 .alert {
   background-color: rgb(216, 107, 107);
   padding: 2rem;
+}
+
+.signup-form-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  font-family: "Gilroy-light";
+
+  .signup-form-controll {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 100vh;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: blur(20px);
+
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+      }
+    }
+
+    .buttons {
+      width: 30%;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: inherit;
+
+      button {
+        display: inline-block;
+        width: 80%;
+        font-family: inherit;
+        margin-top: 20px;
+        padding: 20px;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .signup-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .inputs {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .inputs-controll {
+          width: 78%;
+          border-bottom: 1px solid #343a40;
+          padding-left: 10px;
+
+          input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            width: 80%;
+            margin-left: 10px;
+            font-family: inherit;
+            padding: 10px;
+          }
+        }
+      }
+
+      button {
+        font-family: inherit;
+        width: 80%;
+        margin-top: 20px;
+        padding: 20px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }

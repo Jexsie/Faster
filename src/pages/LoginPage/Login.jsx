@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { regular, solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
+import logo from "../../images/logo.jpg";
 import "./Login.scss";
 
 const Login = () => {
@@ -47,47 +48,56 @@ const Login = () => {
   }
 
   return (
-    <div className="login-form-controll">
-      <div className="login-form">
-        {error && <div className="alert">{error}</div>}
-        {loggedIn && <h1>LOGGED IN</h1>}
-        <FontAwesomeIcon icon={solid("user")} />
-        <div className="inputs">
-          <div>
-            <input
-              type="text"
-              placeholder="Email address"
-              ref={emailRef}
-              onChange={handleInput}
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="Password"
-              ref={passwordRef}
-              onChange={handleInput}
-            />
-          </div>
+    <div className="login-form-container">
+      <div className="login-form-controll">
+        <div className="icon-container">
+          <img src={logo} alt="FASTER" />
         </div>
-        <div className="forgot-password">
-          <p>Forgot password?</p>
-        </div>
-        <div className="buttons">
-          <button onClick={handleSubmit} disabled={loading}>
+        <form className="login-form">
+          {error && <div className="alert">{error}</div>}
+          {loggedIn && <h1>LOGGED IN</h1>}
+          <div className="inputs">
+            <div className="inputs-controll">
+              <FontAwesomeIcon icon={solid("envelope")} className="icon" />
+              <input
+                type="text"
+                placeholder="Email address  *"
+                ref={emailRef}
+                onChange={handleInput}
+                required
+              />
+            </div>
+            <div className="inputs-controll">
+              <FontAwesomeIcon icon={solid("lock")} className="icon" />
+              <input
+                type="password"
+                placeholder="Password *"
+                ref={passwordRef}
+                onChange={handleInput}
+                required
+              />
+            </div>
+            <div className="forgot-password">
+              <Link to="/password-reset">Forgot password?</Link>
+            </div>
+          </div>
+
+          <button type="submit" className="login-button">
             Login
           </button>
+        </form>
+        <div className="buttons">
           <button onClick={signInWithGoogle} disabled={loading}>
             Sign in with Google
           </button>
           <button onClick={signInWithGithub} disabled={loading}>
             Sign in with Github
           </button>
-        </div>
-        <div>
-          <p>
-            New to FASTER? <Link to="/signup">Sign up</Link>
-          </p>
+          <div>
+            <p>
+              New to FASTER? <Link to="/signup">Sign up</Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

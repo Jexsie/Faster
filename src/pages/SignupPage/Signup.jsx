@@ -1,6 +1,9 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { useAuth } from "../../Context/AuthContext";
+import logo from "../../images/logo.jpg";
 import "./Signup.scss";
 
 const Signup = () => {
@@ -38,46 +41,64 @@ const Signup = () => {
   }
 
   return (
-    <div className="form-controll">
-      <div className="form">
-        {error && <div className="alert">{error}</div>}
-        {currentUser && currentUser.email}
-        <input
-          type="text"
-          name="email"
-          value={form.email}
-          placeholder="Enter e-mail"
-          ref={emailRef}
-          onChange={handleInput}
-        />
+    <div className="signup-form-container">
+      <div className="signup-form-controll">
+        <div className="icon-container">
+          <img src={logo} alt="FASTER" />
+        </div>
+        <form className="signup-form">
+          {error && <div className="alert">{error}</div>}
+          {currentUser && currentUser.email}
+          <div className="inputs">
+            <div className="inputs-controll">
+              <FontAwesomeIcon icon={solid("envelope")} className="icon" />
+              <input
+                type="text"
+                name="email"
+                value={form.email}
+                placeholder="E-mail *"
+                ref={emailRef}
+                onChange={handleInput}
+              />
+            </div>
 
-        <input
-          type="password"
-          name="password"
-          value={form.password}
-          placeholder="password"
-          ref={passwordRef}
-          onChange={handleInput}
-        />
-        <input
-          type="password"
-          name="passwordConfirm"
-          value={form.passwordConfirm}
-          placeholder="confirm password"
-          ref={passwordConfirmRef}
-          onChange={handleInput}
-        />
-        <button onClick={handleSubmit} disabled={loading}>
-          Sign Up
-        </button>
-      </div>
-      <div>
+            <div className="inputs-controll">
+              <FontAwesomeIcon icon={solid("lock")} className="icon" />
+
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                placeholder="Password *"
+                ref={passwordRef}
+                onChange={handleInput}
+                required
+              />
+            </div>
+            <div className="inputs-controll">
+              <FontAwesomeIcon icon={solid("lock")} className="icon" />
+              <input
+                type="password"
+                name="passwordConfirm"
+                value={form.passwordConfirm}
+                placeholder="Confirm password"
+                ref={passwordConfirmRef}
+                onChange={handleInput}
+              />
+            </div>
+          </div>
+          <button type="submit" onClick={handleSubmit} disabled={loading}>
+            Sign Up
+          </button>
+        </form>
+        <div className="buttons">
+          <button>Signup with Google</button>
+          <button>Signup with Github</button>
+        </div>
         <p>
           Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
-      <button>Signup with Google</button>
-      <button>Signup with Github</button>
     </div>
   );
 };
