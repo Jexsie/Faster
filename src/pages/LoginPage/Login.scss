@@ -1,87 +1,3 @@
-// .login-form-container {
-//   width: 100%;
-//   height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   justify-self: center;
-//   font-family: "Gilroy-light";
-
-//   .login-form-controll {
-//     height: 100vh;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     width: 30%;
-//     height: 100vh;
-//     margin: 0 auto;
-//     border-radius: 10px;
-//     background-color: rgba(255, 255, 255, 0.8);
-//     -webkit-backdrop-filter: saturate(180%) blur(20px);
-//     backdrop-filter: blur(20px);
-
-//     .icon-container {
-//       display: flex;
-//       align-items: center;
-//       justify-content: center;
-
-//       img {
-//         width: 8rem;
-//         height: 8rem;
-//         border-radius: 50%;
-//       }
-//     }
-
-//     .buttons {
-//       width: 30%;
-//       margin: 0 auto;
-//       width: 100%;
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: center;
-//       align-items: center;
-//       margin-top: 1rem;
-//       font-family: inherit;
-
-//       button {
-//         display: inline-block;
-//         width: 80%;
-//         margin: 10px 0;
-//         font-family: inherit;
-//         &:hover {
-//           cursor: pointer;
-//         }
-//       }
-//     }
-//     .login-form {
-//       width: 100%;
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: center;
-//       align-items: center;
-
-//       .inputs {
-//         width: 100%;
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         align-items: center;
-
-//         .inputs-controll {
-//           width: 80%;
-//           border-bottom: 2px solid red;
-
-//           input {
-//             border: none;
-//             outline: none;
-//             background-color: transparent;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
 .alert {
   background-color: rgb(216, 107, 107);
   padding: 2rem;
@@ -97,7 +13,6 @@
 
   .login-form-controll {
     height: 100vh;
-    // padding-top: 8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,7 +20,6 @@
     width: 30%;
     height: 100vh;
     margin: 0 auto;
-    // gap: 1rem;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 1);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -182,7 +96,6 @@
           justify-content: flex-end;
           align-items: center;
           margin-top: 20px;
-          // gap: 10%;
         }
       }
 
