@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { auth } from "../FirebaseConfig";
 import {
-  createUserWithEmailAndPassword,
+  // createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
@@ -18,9 +18,9 @@ export function useAuth() {
 export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
 
-  function signup(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
-  }
+  // function signup(email, password) {
+  //   return createUserWithEmailAndPassword(auth, email, password);
+  // }
 
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -50,7 +50,7 @@ export default function AuthProvider({ children }) {
 
   const value = {
     currentUser,
-    signup,
+    // signup,
     login,
     googleLogin,
     githubLogin,
