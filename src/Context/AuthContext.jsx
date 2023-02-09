@@ -26,23 +26,13 @@ export default function AuthProvider({ children }) {
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getUsers();
-  }, [usersCollectionRef]);
+  }, []);
 
   async function signup(email, password) {
     await addDoc(usersCollectionRef, {
       email: email,
       password: password,
     });
-  }
-
-  function login(email, password) {
-    for (const user of users) {
-      if (user.email === email && user.password === password) {
-        setCurrentUser(user.email);
-      } else {
-        return false;
-      }
-    }
   }
 
   function googleLogin() {
@@ -64,7 +54,7 @@ export default function AuthProvider({ children }) {
     setCurrentUser,
     currentUser,
     signup,
-    login,
+    // login,
     googleLogin,
     githubLogin,
     logOut,

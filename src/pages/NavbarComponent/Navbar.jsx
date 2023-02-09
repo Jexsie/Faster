@@ -7,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const headers = [
     {
-      name: "Home",
+      name: currentUser ? "Dashboard" : "Home",
       link: currentUser ? "/dashboard" : "/",
       func: () => {},
     },

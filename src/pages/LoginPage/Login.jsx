@@ -13,20 +13,41 @@ const Login = () => {
   const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login, googleLogin, githubLogin } = useAuth();
+  const { users, setCurrentUser, googleLogin, githubLogin } = useAuth();
 
   function handleInput(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
+  function login(email, password) {
+    // for (const user of users) {
+    //   if (user.email === email && user.password === password) {
+    //     // setCurrentUser(user.email);
+    //     // navigate(-1);
+    //     console.log("am ther");
+    //   } else {
+    //     // return setError("Failed to login. Please check your credentials");
+    //     console.log("not me");
+    //   }
+    // }
+
+    users.map((user) => {
+      if (user.email === email && user.password === password) {
+        setCurrentUser(user.email);
+        navigate("/dashboard");
+      } else {
+        return setError("Failed to login. Please check your credentials");
+      }
+      return null;
+    });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-
     setError("");
     setLoading(true);
     login(emailRef.current.value, passwordRef.current.value);
     setLoading(false);
-    navigate(-1);
   }
 
   function signInWithGoogle() {
