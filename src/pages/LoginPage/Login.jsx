@@ -14,7 +14,6 @@ const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const { login, googleLogin, githubLogin } = useAuth();
-  // const navigate = useNavigate();
 
   function handleInput(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,17 +27,16 @@ const Login = () => {
     login(emailRef.current.value, passwordRef.current.value);
     setLoading(false);
     navigate(-1);
-    // navigate("/dashboard");
   }
 
   function signInWithGoogle() {
     googleLogin();
-    // navigate("/dashboard");
+    navigate("/dashboard");
   }
 
   function signInWithGithub() {
     githubLogin();
-    // navigate("/dashboard");
+    navigate("/dashboard");
   }
 
   return (

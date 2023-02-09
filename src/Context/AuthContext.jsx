@@ -3,11 +3,8 @@ import { auth } from "../FirebaseConfig";
 import { addDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../FirebaseConfig";
 import {
-  // createUserWithEmailAndPassword,
-  // signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-  // signOut,
   GithubAuthProvider,
 } from "firebase/auth";
 
@@ -29,7 +26,7 @@ export default function AuthProvider({ children }) {
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getUsers();
-  }, []);
+  }, [usersCollectionRef]);
 
   async function signup(email, password) {
     await addDoc(usersCollectionRef, {
@@ -39,7 +36,6 @@ export default function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    // return signInWithEmailAndPassword(auth, email, password);
     for (const user of users) {
       if (user.email === email && user.password === password) {
         setCurrentUser(user.email);
@@ -47,13 +43,6 @@ export default function AuthProvider({ children }) {
         return false;
       }
     }
-    // const userEmails = users.map((user) => user.email);
-    // if (userEmails.includes(email)) {
-    //   console.log(userEmails);
-    // } else {
-    //   console.log("Email not already");
-    // }
-    // authenticate(email, password)
   }
 
   function googleLogin() {
@@ -69,14 +58,6 @@ export default function AuthProvider({ children }) {
   function logOut() {
     return setCurrentUser(null);
   }
-
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     setCurrentUser(user);
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
 
   const value = {
     users,
