@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import logo from "../../images/logo.jpg";
 import "./Login.scss";
@@ -10,30 +10,24 @@ const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login, currentUser, googleLogin, githubLogin } = useAuth();
+  const { login, googleLogin, githubLogin } = useAuth();
   // const navigate = useNavigate();
 
   function handleInput(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    if (currentUser.email === emailRef.current.value) {
-      setError("User already exists!");
-    }
-
-    try {
-      setError("");
-      setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-    } catch {
-      setError("Failed! Please check your email or password and try again.");
-    }
+    setError("");
+    setLoading(true);
+    login(emailRef.current.value, passwordRef.current.value);
     setLoading(false);
+    navigate(-1);
     // navigate("/dashboard");
   }
 

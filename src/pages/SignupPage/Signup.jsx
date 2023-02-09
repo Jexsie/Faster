@@ -6,13 +6,13 @@ import { useAuth } from "../../Context/AuthContext";
 import logo from "../../images/logo.jpg";
 import "./Signup.scss";
 import { db } from "../../FirebaseConfig";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+// import { addDoc, collection, getDocs } from "firebase/firestore";
 
 const Signup = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { currentUser } = useAuth();
+  const { users, currentUser, setCurrentUser, signup } = useAuth();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -20,29 +20,28 @@ const Signup = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState([]);
-  const usersCollectionRef = collection(db, "users");
+  // const [users, setUsers] = useState([]);
+  // const usersCollectionRef = collection(db, "users");
   const navigate = useNavigate();
-
   const handleInput = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    async function getUsers() {
-      const data = await getDocs(usersCollectionRef);
-      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }
-    getUsers();
+  // useEffect(() => {
+  //   async function getUsers() {
+  //     const data = await getDocs(usersCollectionRef);
+  //     setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //   }
+  //   getUsers();
 
-    users.map((user) => {
-      if (user.email === emailRef.current.value) {
-        // return setError("User already exists");
-        console.log(user.email);
-      }
-      return null;
-    });
-  }, []);
+  //   users.map((user) => {
+  //     if (user.email === emailRef.current.value) {
+  //       // return setError("User already exists");
+  //       console.log(user.email);
+  //     }
+  //     return null;
+  //   });
+  // }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -67,14 +66,12 @@ const Signup = () => {
       return null;
     });
 
+    // await signup(emailRef.current.value, passwordRef.current.value);
+
     setError("");
     setLoading(true);
-    // await signup(emailRef.current.value, passwordRef.current.value);
-    await addDoc(usersCollectionRef, {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    }).then(() => {
-      // <Navigate replace to="/dashboard" />;
+    signup(emailRef.current.value, passwordRef.current.value).then(() => {
+      setCurrentUser(emailRef.current.value);
       navigate("/dashboard");
     });
     setLoading(false);
@@ -85,7 +82,7 @@ const Signup = () => {
       <div className="signup-form-controll">
         <div className="icon-container">
           <img src={logo} alt="FASTER" />
-          {JSON.stringify(users)}
+          {/* {JSON.stringify(users)} */}
         </div>
         <form className="signup-form">
           {error && <div className="alert">{error}</div>}

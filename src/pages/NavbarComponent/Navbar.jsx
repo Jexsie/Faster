@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import "./Navbar.scss";
 
 const Navbar = () => {
   const { currentUser, logOut } = useAuth();
-  const [loggedOut, setLoggedOut] = useState(false);
   const navigate = useNavigate();
   const headers = [
     {
@@ -28,8 +26,7 @@ const Navbar = () => {
       link: currentUser ? "#" : "/login",
       func: currentUser
         ? async function logout() {
-            await logOut();
-            setLoggedOut(true);
+            logOut();
             navigate("/");
           }
         : () => {},

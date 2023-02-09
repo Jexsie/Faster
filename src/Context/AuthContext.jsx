@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { auth } from "../FirebaseConfig";
+import { addDoc, getDocs, collection } from "firebase/firestore";
+import { db } from "../FirebaseConfig";
 import {
   // createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  // signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-  signOut,
+  // signOut,
   GithubAuthProvider,
 } from "firebase/auth";
 
@@ -17,13 +19,41 @@ export function useAuth() {
 
 export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
+  const [users, setUsers] = useState([]);
 
-  // function signup(email, password) {
-  //   return createUserWithEmailAndPassword(auth, email, password);
-  // }
+  const usersCollectionRef = collection(db, "users");
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getDocs(usersCollectionRef);
+      setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getUsers();
+  }, []);
+
+  async function signup(email, password) {
+    await addDoc(usersCollectionRef, {
+      email: email,
+      password: password,
+    });
+  }
 
   function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+    // return signInWithEmailAndPassword(auth, email, password);
+    for (const user of users) {
+      if (user.email === email && user.password === password) {
+        setCurrentUser(user.email);
+      } else {
+        return false;
+      }
+    }
+    // const userEmails = users.map((user) => user.email);
+    // if (userEmails.includes(email)) {
+    //   console.log(userEmails);
+    // } else {
+    //   console.log("Email not already");
+    // }
+    // authenticate(email, password)
   }
 
   function googleLogin() {
@@ -37,20 +67,22 @@ export default function AuthProvider({ children }) {
   }
 
   function logOut() {
-    return signOut(auth);
+    return setCurrentUser(null);
   }
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-    });
+  // useEffect(() => {
+  //   const unsubscribe = auth.onAuthStateChanged((user) => {
+  //     setCurrentUser(user);
+  //   });
 
-    return unsubscribe;
-  }, []);
+  //   return unsubscribe;
+  // }, []);
 
   const value = {
+    users,
+    setCurrentUser,
     currentUser,
-    // signup,
+    signup,
     login,
     googleLogin,
     githubLogin,
